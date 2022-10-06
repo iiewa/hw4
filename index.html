@@ -48,21 +48,21 @@
                         + "Hotdogs: " + numDogs + " x $4.25 </br>"
                         + "<br>Fries: " + numFries + " x $2.60 </br>"
                         + "<br>Sodas: " + numSodas + " x $1.50 </br></div>");
-        subtotal = (numDogs*4.25 + numFries*2.6 + numSodas*1.5).toFixed(2);
+        subtotal = Math.round(100*(numDogs*4.25 + numFries*2.6 + numSodas*1.5))/100;
         document.write("<div class = col> Subtotal: $"+subtotal);
         
         // check for and subtract discount if applicable + display
         total_beforetax = subtotal;
         if (subtotal >= 20) {
-            document.write("<p>You qualify for Joe's special discount (10% off): -$" + (0.1*subtotal).toFixed(2) + "</p>");
+            document.write("<p>You qualify for Joe's special discount (10% off): -$" + Math.round(100*0.1*subtotal)/100 + "</p>");
             total_beforetax = 0.9*subtotal;
-            document.write("<p> New subtotal: " + total_beforetax.toFixed(2) + "</p>");
+            document.write("<p> New subtotal: " + Math.round(100*total_beforetax)/100 + "</p>");
         }
         
         // calculate + display total
         total = 1.0625*total_beforetax;
-        document.write("<p>Tax (6.25%): $" + (0.0625*total_beforetax).toFixed(2) + "</p>");
-        document.write("<p><b>Total: $" + total.toFixed(2) + "</div>"); 
+        document.write("<p>Tax (6.25%): $" + Math.round(100*(0.0625*total_beforetax))/100 + "</p>");
+        document.write("<p><b>Total: $" + Math.round(100*total)/100 + "</div>"); 
     </script>
     </div>
     <hr>
