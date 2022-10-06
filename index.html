@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Joe's Hotdog Stand</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class= "columns" id = "header">
+        <h1>Joe's Hotdog Stand</h1>
+        <img id = "smallpic" src="hotdog.png" alt="Image of hotdog">
+    </div>
+    <hr>
+    <h2>Menu</h2> 
+    <div class = "columns">
+        <div class = "col">
+            Hotdog: $4.25 <br><br>
+            Fries: $2.60 <br><br>
+            Soda: $1.50 <br><br>
+        </div>
+        <div class = "col">
+            <div id = "discounttext">Get 10% off with an order of $20 or more!</div>
+        </div>
+    </div>
+    <hr>
+    <h2>Your Order</h2> 
+    <div class = "columns">
+        <script language="javascript">
+        numDogs = prompt("How many hotdogs would you like?","0");
+        numFries = prompt("How many orders of fries would you like?","0");
+        numSodas = prompt("How many sodas would you like?","0");
+        
+        // format inputs + account for edge cases
+        numDogs = parseFloat(numDogs);
+        numFries = parseFloat(numFries);
+        numSodas = parseFloat(numSodas);
+        if (isNaN(numDogs)) {
+            numDogs = 0;
+        }
+        if (isNaN(numFries)) {
+            numFries = 0;
+        }
+        if (isNaN(numSodas)) {
+            numSodas = 0;
+        }
+
+        // calculate subtotal + display
+        document.write("<div class = col>"
+                        + "Hotdogs: " + numDogs + " x $4.25 </br>"
+                        + "<br>Fries: " + numFries + " x $2.60 </br>"
+                        + "<br>Sodas: " + numSodas + " x $1.50 </br></div>");
+        subtotal = (numDogs*4.25 + numFries*2.6 + numSodas*1.5).toFixed(2);
+        document.write("<div class = col> Subtotal: $"+subtotal);
+        
+        // check for and subtract discount if applicable + display
+        total_beforetax = subtotal;
+        if (subtotal >= 20) {
+            document.write("<p>You qualify for Joe's special discount (10% off): -$" + (0.1*subtotal).toFixed(2) + "</p>");
+            total_beforetax = 0.9*subtotal;
+            document.write("<p> New subtotal: " + total_beforetax.toFixed(2) + "</p>");
+        }
+        
+        // calculate + display total
+        total = 1.0625*total_beforetax;
+        document.write("<p>Tax (6.25%): $" + (0.0625*total_beforetax).toFixed(2) + "</p>");
+        document.write("<p><b>Total: $" + total.toFixed(2) + "</div>"); 
+    </script>
+    </div>
+    <hr>
+    <div class = "bottom_img">
+        <img id = "largepic" src="hotdogs.jpeg" alt="Image of hotdogs">
+    </div>
+    
+</body>
